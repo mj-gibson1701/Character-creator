@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<script src="jsclasses.js"></script>
+<style>
+
+.hide {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+
+    }
+
+</style>
+<html>
+<object id="racesobject" class="hide" data="Races.html" type="text/html">alt : <a href="/Races.html">test.html</a></object>
+<object id="classesobject" class="hide" data="Classes.html" type="text/html">alt : <a href="/Races.html">test.html</a></object>
+
+<script>
+
+    var races = [];
+    var classes = [];
+    var feats = [];
+    var spells = [];
+
+    window.onload = function() { 
+        //var object = window[0].document.getElementById("races").innerHTML;
+
+        var object = document.getElementById("racesobject").contentDocument;
+        var html = object.getElementById("races").innerHTML;
+    
+        var lines = html.toString().split("\n");
+        for(var i=2; i<lines.length-2; i++){
+            var raceinfo = [];
+            
+            
+            var tempinfo = lines[i].split("\"");
+            for(var i=0; i<lines.length; i++){
+                if (i%2 == 0){raceinfo.push(tempinfo[i].split(","));}
+                else {raceinfo.push(tempinfo[i]);}
+            }
+            
+            
+            
+            var temprace = new Race(raceinfo[0],raceinfo[1],raceinfo[2],raceinfo[3],raceinfo[4],raceinfo[5],raceinfo[6],raceinfo[7],raceinfo[8],raceinfo[9],raceinfo[10],raceinfo[11],raceinfo[12],raceinfo[13],raceinfo[14],raceinfo[15]);
+            
+            races.push(temprace);
+        }
+        
+        
+        
+        
+        
+        
+        object = document.getElementById("classesobject").contentDocument;
+        html = object.getElementById("classes").innerHTML;
+    
+        var lines = html.toString().split("\n");
+        for(var i=2; i<lines.length-2; i++){
+            var classinfo = [];
+            
+            var tempinfo = lines[i].split("\"");
+            for(var i=0; i<lines.length; i++){
+                if (i%2 == 0){classinfo.push(tempinfo[i].split(","));}
+                else {classinfo.push(tempinfo[i]);}
+            }
+            
+            
+            var tempclass = new Class(classinfo[0],classinfo[1],classinfo[2],classinfo[6],classinfo[5],raceinfo[5],classinfo[3]);
+            classes.push(tempclass);
+        }
+        
+        
+        
+        
+        
+        
+        object = document.getElementById("spellsobject").contentDocument;
+        html = object.getElementById("spells").innerHTML;
+    
+        var lines = html.toString().split("\n");
+        for(var i=2; i<lines.length-2; i++){
+            var spellinfo = [];
+            
+            
+            tempinfo = lines[i].split("\"");
+            for(var i=0; i<lines.length; i++){
+                if (i%2 == 0){spellinfo.push(tempinfo[i].split(","));}
+                else {spellinfo.push(tempinfo[i]);}
+            }
+            
+            
+            var tempspell = new Spell(spellinfo[0],);
+            spells.push(tempspell);
+        }
+        
+        
+        
+        
+        
+        var object = document.getElementById("featsobject").contentDocument;
+        var html = object.getElementById("feats").innerHTML;
+    
+        var lines = html.toString().split("\n");
+        for(var i=2; i<lines.length-2; i++){
+            
+            var classinfo = lines[i].split(",");
+            var tempclass = new Class(classinfo[0],classinfo[1],classinfo[2],classinfo[6],classinfo[5],raceinfo[5],classinfo[3]);
+            races.push(temprace);
+        }
+        
+        
+    }
+
+</script>
+
+</html>
